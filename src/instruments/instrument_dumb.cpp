@@ -2,7 +2,6 @@
 #include <math.h>
 #include "instrument_dumb.h"
 #include "keyvalue.h"
-
 #include <stdlib.h>
 
 using namespace upc;
