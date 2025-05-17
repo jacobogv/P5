@@ -19,7 +19,7 @@ InstrumentDumb::InstrumentDumb(const std::string &param)
   KeyValue kv(param);
   int N;
 
-  if (!kv.to_int("N",N))
+  if (!kv.to_int("N",N)) //si el fichero no incluía el parámetro N, toma por defecto 40.
     N = 40; //default value
   
   //Create a tbl with one period of a sinusoidal wave
@@ -33,12 +33,15 @@ InstrumentDumb::InstrumentDumb(const std::string &param)
 }
 
 
-void InstrumentDumb::command(long cmd, long note, long vel) {
+void InstrumentDumb::command(long cmd, long note, long vel) { //gestiona los comandos.
   if (cmd == 9) {		//'Key' pressed: attack begins
     bActive = true;
     adsr.start();
     index = 0;
-	A = vel / 127.;
+	  A = vel / 127.;
+    float f0 = 440 * pow(2,(note-69)/12.);
+    phase = 2 * M_PI * f0 / SamplingRate;
+    phase_act = 0;
   }
   else if (cmd == 8) {	//'Key' released: sustain ends, release begins
     adsr.stop();
@@ -49,8 +52,8 @@ void InstrumentDumb::command(long cmd, long note, long vel) {
 }
 
 
-const vector<float> & InstrumentDumb::synthesize() {
-  if (not adsr.active()) {
+const vector<float> & InstrumentDumb::synthesize() { //si ya no está activa la adsr, finaliza la nota del todo.
+  if (not adsr.active()) {//si no está activo.
     x.assign(x.size(), 0);
     bActive = false;
     return x;
@@ -59,9 +62,12 @@ const vector<float> & InstrumentDumb::synthesize() {
     return x;
 
   for (unsigned int i=0; i<x.size(); ++i) {
-    x[i] = A * tbl[index++];
-    if (index == tbl.size())
-      index = 0;
+    phase_act += phase;
+    while (phase_act > 2 * M_PI) {
+      phase_act -= 2 * M_PI;
+    }
+    index = (int) phase_act/(2 * M_PI) * tbl.size();
+    x[i] = A * tbl[index];
   }
   adsr(x); //apply envelope to x and update internal status of ADSR
 
