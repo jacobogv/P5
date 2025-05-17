@@ -94,7 +94,8 @@ Use el programa `synth` para generar canciones a partir de su partitura MIDI. Co
 - Indique, a continuación, la orden necesaria para generar la señal (suponiendo que todos los archivos
   necesarios están en directorio indicado).
 
-  La orden necesaria para generar la señal, dentro del directorio `work/music`, es: 
+  La orden necesaria para generar la señal, dentro del directorio `work/music`, es:
+   
   `synth orq1.orc ToyStory_A_Friend_in_me.sco ToyStory_A_Friend_in_me.wav`
 
 También puede orquestar otros temas más complejos, como la banda sonora de *Hawaii5-0* o el villacinco de
