@@ -14,8 +14,8 @@ namespace upc {
 	  float	fm, I;
     public:
       Vibrato(const std::string &param = "");
-	  void operator()(std::vector<float> &x);
-	  void command(unsigned int);
+	    void operator()(std::vector<float> &x);
+	    void command(unsigned int);
   };
 }
 

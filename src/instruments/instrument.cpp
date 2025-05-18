@@ -1,6 +1,5 @@
 #include <iostream>
 #include "instrument_dumb.h"
-#include "instrument_fm.h"
 
 /*
   For each new instrument:
