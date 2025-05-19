@@ -80,14 +80,14 @@ deberá venir expresado en semitonos.
   `work/doremi/campana.work`.
 
   Se ha generado `clarinete.wav`, correspondiente al instrumento 4 del `dumb.orc` y la `campana.wav`, que es el número 5. 
-  En ambos casos, se ha ejecutado la partitura de `doremi.sco`, aunque para cada instrumento se a generado un 'doremi.sco' concreto cambiando el número del instrumento, por ejemplo, para el caso de la campana se ha creado el `doremicampana.sco`.
+  En ambos casos, se ha ejecutado la partitura de `doremi.sco`, aunque para cada instrumento se a generado un `doremi.sco` concreto cambiando el número del instrumento; por ejemplo, para el caso de la campana se ha creado el `doremicampana.sco`.
   Dentro de `work/doremi` encontrará los resultados generados.
   * También puede colgar en el directorio work/doremi otras escalas usando sonidos *interesantes*. Por
     ejemplo, violines, pianos, percusiones, espadas láser de la
 	[Guerra de las Galaxias](https://www.starwars.com/), etc.
 
     Se ha implementado, con el mismo proceso, el sonido `láser.wav`, el `piano.wav` y la `tuba.wav`. 
-    Un debe ser algo imaginativo con este método, propuesto por *Chowning*, de de la síntesis FM, al fin y al cabo ese sonido sintético siempre estará algo presente.
+    Uno debe ser algo imaginativo con este método, propuesto por *Chowning*, de la síntesis FM, al fin y al cabo ese sonido sintético siempre estará algo presente.
 
 ### Orquestación usando el programa synth.
 
