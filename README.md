@@ -60,6 +60,11 @@ mediante búsqueda de los valores en una tabla.
   sinusoidal. Deberá explicar detalladamente cómo se manifiestan los parámetros del efecto (frecuencia e
   índice de modulación) en la señal generada (se valorará que la explicación esté contenida en las propias
   gráficas, sin necesidad de *literatura*).
+
+  <img width="1189" alt="Captura de pantalla 2025-05-23 a las 14 02 55" src="https://github.com/user-attachments/assets/2444f8f1-dead-4d04-9879-0cb76c249a79" />
+
+  <img width="1197" alt="Captura de pantalla 2025-05-23 a las 14 02 29" src="https://github.com/user-attachments/assets/cf441a03-64cd-48f2-bd38-b6225e211879" />
+
 - Si ha generado algún efecto por su cuenta, explique en qué consiste, cómo lo ha implementado y qué
   resultado ha producido. Incluya, en el directorio `work/ejemplos`, los ficheros necesarios para apreciar
   el efecto, e indique, a continuación, la orden necesaria para generar los ficheros de audio usando el
