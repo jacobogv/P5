@@ -75,7 +75,8 @@ mediante búsqueda de los valores en una tabla.
   resultado ha producido. Incluya, en el directorio `work/ejemplos`, los ficheros necesarios para apreciar
   el efecto, e indique, a continuación, la orden necesaria para generar los ficheros de audio usando el
   programa `synth`.
-Lo que hicimos fue generar una señal de tipo seno y la modificamos para que el sonido cambie entre el canal izquierdo y derecho a lo largo del tiempo. Para eso, utilizamos una onda de baja frecuencia que controla cuánto volumen tiene cada canal en cada momento.
+
+	Lo que hicimos fue generar una señal de tipo seno y la modificamos para que el sonido cambie entre el canal izquierdo y derecho a lo largo del tiempo. Para eso, utilizamos una onda de baja frecuencia que controla cuánto volumen tiene cada canal en cada momento.
 El canal izquierdo va subiendo mientras el derecho baja, y luego se invierten, repitiendo el patrón. Así se consigue una sensación de movimiento en el espacio estéreo, como si el sonido se estuviera desplazando de un lado al otro. El efecto se produce sin cambiar la frecuencia ni la forma de la onda, simplemente ajustando la salida en cada canal.
 El código esta en C++ y genera directamente un archivo .wav estéreo. Lo compilamos con synth y al ejecutarlo se crea el fichero de audio con el efecto aplicado.
 
