@@ -54,71 +54,17 @@ Implemente el instrumento `Seno` tomando como modelo el `InstrumentDumb`. La se�
 mediante búsqueda de los valores en una tabla.
 
 - Incluya, a continuación, el código del fichero `seno.cpp` con los métodos de la clase Seno.
-  	#include "seno.h"
-	#include "keyvalue.h"
-	#include <cmath>
-	#include <iostream>
-
-using namespace std;
-using namespace upc;
-
-Seno::Seno(const std::string &param) : adsr(SamplingRate, param) {
-    bActive = false;
-    x.resize(BSIZE);
-    KeyValue kv(param);
-
-    int N;
-    if (!kv.to_int("N", N)) N = 1024;
-
-    table.resize(N);
-    for (int i = 0; i < N; ++i) {
-        table[i] = sin(2 * M_PI * i / N);
-    }
-
-    index = 0;
-    increment = 1.0;
-    A = 1.0;
-}
-
-void Seno::command(long cmd, long note, long vel) {
-    if (cmd == 9) { // Nota presionada
-        bActive = true;
-        adsr.start();
-        A = vel / 127.0;
-        float f = 440.0 * pow(2.0, (note - 69) / 12.0);
-        increment = f * table.size() / SamplingRate;
-        index = 0;
-    }
-    else if (cmd == 8) { // Nota soltada
-        adsr.stop();
-    }
-    else if (cmd == 0) { // Fin abrupto
-        adsr.end();
-    }
-}
-
-const vector<float> &Seno::synthesize() {
-    if (!adsr.active()) {
-        x.assign(x.size(), 0.0f);
-        bActive = false;
-        return x;
-    }
-    else if (!bActive) {
-        return x;
-    }
-
-    for (unsigned int i = 0; i < x.size(); ++i) {
-        int idx = static_cast<int>(index) % table.size();
-        x[i] = A * table[idx];
-        index += increment;
-    }
-
-    adsr(x);  // Aplicar envolvente a la señal
-    return x;
-}
+  	
+<img width="556" alt="Captura de pantalla 2025-05-25 a las 11 51 12" src="https://github.com/user-attachments/assets/870cc0ba-8f92-4344-ac5b-86f4f6270a82" />
+<img width="656" alt="Captura de pantalla 2025-05-25 a las 11 51 48" src="https://github.com/user-attachments/assets/49417f99-ee36-4bd6-87d7-852d3ec98710" />
 - Explique qué método se ha seguido para asignar un valor a la señal a partir de los contenidos en la tabla,
   e incluya una gráfica en la que se vean claramente (use pelotitas en lugar de líneas) los valores de la
   tabla y los de la señal generada.
+
+Para generar la señal sinusoidal, utilizamos una tabla con un solo periodo de una onda seno dividida en N muestras. En lugar de calcular el seno en tiempo real, accedemos a la tabla con un índice fraccionario que se incrementa según la frecuencia deseada. Esto nos permite recorrer la tabla a distinta velocidad y generar señales de distintas frecuencias de forma eficiente.
+La gráfica que hicimos en Python muestra con pelotitas azules los valores de la tabla y con pelotitas naranjas los valores generados al recorrerla. Se puede ver cómo la señal final se construye a partir de la tabla original siguiendo el avance del índice.
+  <img width="1000" alt="Captura de pantalla 2025-05-25 a las 11 57 55" src="https://github.com/user-attachments/assets/f2cc809c-09b2-443d-a22f-50e1338821f6" />
+
 - Si ha implementado la síntesis por tabla almacenada en fichero externo, incluya a continuación el código
   del método `command()`.
 
