@@ -112,8 +112,7 @@ deberá venir expresado en semitonos.
     ejemplo, violines, pianos, percusiones, espadas láser de la
 	[Guerra de las Galaxias](https://www.starwars.com/), etc.
 
-    Se ha implementado, con el mismo proceso, el sonido `laser.wav`, el `piano.wav` y la `tuba.wav`. 
-    Uno debe ser algo imaginativo con este método, propuesto por *Chowning*, de la síntesis FM, al fin y al cabo ese sonido sintético siempre estará algo presente.
+    Se ha implementado, con el mismo proceso, el sonido `piano.wav` y la `tuba.wav`. 
 
 ### Orquestación usando el programa synth.
 

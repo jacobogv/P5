@@ -1,41 +1,48 @@
 % Cargar el archivo WAV
-[senal, fs] = audioread('vibra.wav');
+[senal, fs] = audioread('vib.wav');
 t = (0:length(senal)-1)/fs;
 
 % Usar solo un canal si es stereo
-senal_mono = senal(:,1);
+if size(senal, 2) > 1
+    senal_mono = senal(:,1);
+else
+    senal_mono = senal;
+end
 
 % Detectar picos (máximos locales)
 [peaks, locs] = findpeaks(senal_mono, fs, 'MinPeakDistance', 0.001);
 
-% Verificar que haya al menos 4 picos para graficar tres ciclos
-if length(locs) < 4
-    error('No se encontraron suficientes picos para graficar tres ciclos.');
+% Número de ciclos deseados
+num_ciclos = 15;
+
+% Verificar que haya suficientes picos
+if length(locs) < num_ciclos + 1
+    error('No se encontraron suficientes picos para graficar %d ciclos.', num_ciclos);
 end
 
-% Seleccionar tres ciclos (entre el pico 1 y el pico 4)
-idx_start = round(locs(1)*fs);
-idx_end = round(locs(4)*fs);
+% Seleccionar segmento entre el primer y (num_ciclos+1)-ésimo pico
+idx_start = max(1, round(locs(1)*fs));
+idx_end = min(length(senal_mono), round(locs(num_ciclos+1)*fs));
 
 % Extraer la señal y tiempo correspondientes
 senal_ciclos = senal_mono(idx_start:idx_end);
 t_ciclos = (0:length(senal_ciclos)-1)/fs;
 
-% Calcular periodos entre esos 4 picos
-periodos = diff(locs(1:4));
+% Calcular periodos entre los picos seleccionados
+periodos = diff(locs(1:num_ciclos+1));
 
 % Encontrar periodo mínimo y máximo
 [periodo_min, idx_min] = min(periodos);
 [periodo_max, idx_max] = max(periodos);
 
-% Graficar los tres ciclos
+% Graficar los ciclos
 figure;
 plot(t_ciclos, senal_ciclos, 'b-', 'LineWidth', 1.5);
 hold on;
 
 % Marcar los picos con círculos rojos
-picos_ciclos_t = locs(1:4) - locs(1);  % tiempo relativo dentro del segmento
-picos_ciclos_val = peaks(1:4);
+picos_ciclos_t = locs(1:num_ciclos+1) - locs(1);  % tiempo relativo dentro del segmento
+picos_ciclos_val = peaks(1:num_ciclos+1);
 plot(picos_ciclos_t, picos_ciclos_val, 'ro', 'MarkerSize', 8, 'LineWidth', 2);
 
 % Mostrar texto con periodo mínimo
@@ -52,6 +59,7 @@ text(x_text_max, y_text_max, texto_max, 'FontSize', 12, 'Color', 'blue', 'FontWe
 
 xlabel('Tiempo (s)');
 ylabel('Amplitud');
-title('Tres ciclos de vibrato con periodos mínimo y máximo indicados');
+title(sprintf('%d ciclos de vibrato con periodos mínimo y máximo indicados', num_ciclos));
 grid on;
 hold off;
+

@@ -17,7 +17,8 @@ InstrumentFM::InstrumentFM(const std::string &param)
   // Índice de modulación en semitonos (luego se convierte a lineal)
   float I_semitones = 0;
   if (kv.to_float("I", I_semitones))
-    I = pow(2.0, I_semitones / 12.0f);
+    I = 1. - pow(2, -I / 12.);
+    //I = pow(2.0, I_semitones / 12.0f);
   else
     I = 1.0;
 
