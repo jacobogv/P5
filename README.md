@@ -54,10 +54,10 @@ Implemente el instrumento `Seno` tomando como modelo el `InstrumentDumb`. La se�
 mediante búsqueda de los valores en una tabla.
 
 - Incluya, a continuación, el código del fichero `seno.cpp` con los métodos de la clase Seno.
-  #include "seno.h"
-#include "keyvalue.h"
-#include <cmath>
-#include <iostream>
+  	#include "seno.h"
+	#include "keyvalue.h"
+	#include <cmath>
+	#include <iostream>
 
 using namespace std;
 using namespace upc;
