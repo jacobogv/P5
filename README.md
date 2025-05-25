@@ -42,7 +42,7 @@ permitan visualizar el funcionamiento de la curva ADSR.
   <img width="691" alt="Captura de pantalla 2025-05-24 a las 13 34 20" src="https://github.com/user-attachments/assets/77b96d00-137e-4b8f-a2cc-a207b18ce83c" />
 
   - Debera representar en esta memoria **ambos** posibles finales de la nota.
-  
+
 * Un instrumento *plano*, como los de cuerdas frotadas (violines y semejantes) o algunos de viento. En
   ellos, el ataque es relativamente rápido hasta alcanzar el nivel de mantenimiento (sin sobrecarga), y la
   liberación también es bastante rápida.
@@ -60,6 +60,8 @@ Implemente el instrumento `Seno` tomando como modelo el `InstrumentDumb`. La se�
 mediante búsqueda de los valores en una tabla.
 
 - Incluya, a continuación, el código del fichero `seno.cpp` con los métodos de la clase Seno.
+
+  'hola'
   	
 <img width="556" alt="Captura de pantalla 2025-05-25 a las 11 51 12" src="https://github.com/user-attachments/assets/870cc0ba-8f92-4344-ac5b-86f4f6270a82" />
 <img width="656" alt="Captura de pantalla 2025-05-25 a las 11 51 48" src="https://github.com/user-attachments/assets/49417f99-ee36-4bd6-87d7-852d3ec98710" />
