@@ -155,8 +155,6 @@ mediante búsqueda de los valores en una tabla.
         }
     }
     ```
-  
-<img width="538" alt="Captura de pantalla 2025-05-25 a las 12 02 27" src="https://github.com/user-attachments/assets/d8bb872c-adef-46bd-b9e5-07a862c178c0" />
 
 ### Efectos sonoros.
 
@@ -174,9 +172,7 @@ mediante búsqueda de los valores en una tabla.
   el efecto, e indique, a continuación, la orden necesaria para generar los ficheros de audio usando el
   programa `synth`.
 
-	Lo que hicimos fue generar una señal de tipo seno y la modificamos para que el sonido cambie entre el canal izquierdo y derecho a lo largo del tiempo. Para eso, utilizamos una onda de baja frecuencia que controla cuánto volumen tiene cada canal en cada momento.
-El canal izquierdo va subiendo mientras el derecho baja, y luego se invierten, repitiendo el patrón. Así se consigue una sensación de movimiento en el espacio estéreo, como si el sonido se estuviera desplazando de un lado al otro. El efecto se produce sin cambiar la frecuencia ni la forma de la onda, simplemente ajustando la salida en cada canal.
-El código esta en C++ y genera directamente un archivo .wav estéreo. Lo compilamos con synth y al ejecutarlo se crea el fichero de audio con el efecto aplicado.
+	Lo que hicimos fue generar una señal de tipo seno y la modificamos para que el sonido cambie entre el canal izquierdo y derecho a lo largo del tiempo. Para eso, utilizamos una onda de baja frecuencia que controla cuánto volumen tiene cada canal en cada momento. El canal izquierdo va subiendo mientras el derecho baja, y luego se invierten, repitiendo el patrón. Así se consigue una sensación de movimiento en el espacio estéreo, como si el sonido se estuviera desplazando de un lado al otro. El efecto se produce sin cambiar la frecuencia ni la forma de la onda, simplemente ajustando la salida en cada canal. El código esta en C++ y genera directamente un archivo .wav estéreo. Lo compilamos con synth y al ejecutarlo se crea el fichero de audio con el efecto aplicado.
 
 ### Síntesis FM.
 
