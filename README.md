@@ -183,6 +183,13 @@ deberá venir expresado en semitonos.
 
 - Use el instrumento para generar un vibrato de *parámetros razonables* e incluya una gráfica en la que se
   vea, claramente, la correspondencia entre los valores `N1`, `N2` e `I` con la señal obtenida.
+
+  En este apartado, se ha generado un instrumento llamado `instrument_fmvib`, que se encuentra en la carpeta `src/instruments`, para hacer el vibrato a partir del instrumento FM.
+  En el `dum.orc`, se puede apreciar que se han usado los parámetros I = 1 y una fm = 2Hz. En la carpeta `work` se encuentra el código MatLab con el que se ha graficado la señal `fmvib.wav`. 
+  Seguidamente, se adjunta la gráfica resultante:
+
+  ![alt text](<Screenshot 2025-05-25 at 14.11.31.png>)
+  
 - Use el instrumento para generar un sonido tipo clarinete y otro tipo campana. Tome los parámetros del
   sonido (N1, N2 e I) y de la envolvente ADSR del citado artículo. Con estos sonidos, genere sendas escalas
   diatónicas (fichero `doremi.sco`) y ponga el resultado en los ficheros `work/doremi/clarinete.wav` y

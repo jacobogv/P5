@@ -1,6 +1,7 @@
 #include <iostream>
 #include "instrument_dumb.h"
 #include "instrument_fm.h"
+#include "instrument_fmvib.h"
 
 /*
   For each new instrument:
@@ -20,6 +21,8 @@ namespace upc {
       pInst = (Instrument *) new InstrumentDumb(parameters);
     } else if (name == "InstrumentFM"){
       pInst = (Instrument *) new InstrumentFM(parameters);
+    } else if (name == "InstrumentFMVib"){
+      pInst = (Instrument *) new InstrumentFMVib(parameters);
     }
     return pInst;
   }

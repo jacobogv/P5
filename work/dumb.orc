@@ -6,4 +6,6 @@
 6   InstrumentFM    N1=1; N2=6; I=8.0; ADSR_A=0.001; ADSR_D=0.04; ADSR_S=0; ADSR_R=0.04;//láser, no lo incluyo.
 7   InstrumentFM    I=4.0; N1=1; N2=2; ADSR_A=0.007; ADSR_D=0.12; ADSR_S=0.05; ADSR_R=0.12;//piano
 8   InstrumentFM    I=2.8; N1=1; N2=4; ADSR_A=0.1; ADSR_D=0.6; ADSR_S=0.75; ADSR_R=0.45;//tuba.
+9   InstrumentFMVib I=2.5; N1=1; N2=3; Ivib=1; fm_vib=2; A=1.0;//vib a partir de fm.
+
 

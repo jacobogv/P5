@@ -1,13 +1,13 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
-#include "instrument_fm.h"
+#include "instrument_fmvib.h"
 #include "keyvalue.h"
 
 using namespace upc;
 using namespace std;
 
-InstrumentFM::InstrumentFM(const std::string &param) 
+InstrumentFMVib::InstrumentFMVib(const std::string &param) 
   : adsr(SamplingRate, param) {
   bActive = false;
   x.resize(BSIZE);
@@ -30,14 +30,29 @@ InstrumentFM::InstrumentFM(const std::string &param)
 
   if (!kv.to_float("A", A))
     A = 1.0;
-    
+
+  float Ivib_semitones = 0;
+  if (!kv.to_float("Ivib", Ivib_semitones))
+    Ivib_semitones = 0.0f;
+
+  // Convertir profundidad de vibrato de semitonos a factor de frecuencia
+  Ivib = pow(2.0f, Ivib_semitones / 12.0f) - 1.0f;
+
+  if (!kv.to_float("fm_vib", fm_vib))
+    fm_vib = 5.0f;
+
+  phase_vib = 0.0f;
+  inc_vib = 2 * M_PI * fm_vib / SamplingRate;
+
   phase_c = phase_m = 0;
   inc_c = inc_m = 0;
 }
 
 
-void InstrumentFM::command(long cmd, long note, long velocity) {
+void InstrumentFMVib::command(long cmd, long note, long velocity) {
   if (cmd == 9) { // Note ON
+    phase_vib = 0.0f;
+    inc_vib = 2 * M_PI * fm_vib / SamplingRate;
     bActive = true;
     adsr.start();
     
@@ -60,7 +75,7 @@ void InstrumentFM::command(long cmd, long note, long velocity) {
 }
 
 
-const vector<float> & InstrumentFM::synthesize() {
+const vector<float> & InstrumentFMVib::synthesize() {
   if (!adsr.active()) {
     x.assign(x.size(), 0);
     bActive = false;
@@ -70,16 +85,20 @@ const vector<float> & InstrumentFM::synthesize() {
     return x;
 
   for (unsigned int i = 0; i < x.size(); ++i) {
-    float mod = I * sin(phase_m);
-    x[i] = A * sin(phase_c + mod);
+    float vib = Ivib * sin(phase_vib);          // vibrato proporcional
+    float mod = I * sin(phase_m);               // FM rápida (timbre)
+    x[i] = A * sin(phase_c + mod);              // señal final
 
     // Avanzar fases
-    phase_c += inc_c;
+    phase_c += inc_c * (1.0f + vib);            // aplicar vibrato a la portadora
     if (phase_c >= 2 * M_PI) phase_c -= 2 * M_PI;
 
     phase_m += inc_m;
     if (phase_m >= 2 * M_PI) phase_m -= 2 * M_PI;
-  }
+
+    phase_vib += inc_vib;
+    if (phase_vib >= 2 * M_PI) phase_vib -= 2 * M_PI;
+}
 
   adsr(x);
   return x;

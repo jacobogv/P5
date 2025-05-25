@@ -13,7 +13,7 @@ end
 [peaks, locs] = findpeaks(senal_mono, fs, 'MinPeakDistance', 0.001);
 
 % Número de ciclos deseados
-num_ciclos = 20;
+num_ciclos = 3;
 
 % Verificar que haya suficientes picos
 if length(locs) < num_ciclos + 1
