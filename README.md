@@ -188,7 +188,7 @@ deberá venir expresado en semitonos.
   En el `dum.orc`, se puede apreciar que se han usado los parámetros I = 1 y una fm = 2Hz en el InstrumentFMVib creado. En la carpeta `work` se encuentra el código MatLab `vibra.m` con el que se ha graficado la señal `fmvib.wav`. 
   Seguidamente, se adjunta la gráfica resultante, con el periodo máximo y mínimo indicado:
 
-  ![alt text](<Screenshot 2025-05-25 at 14.11.31.png>)
+  ![alt text](<Screenshot 2025-05-25 at 14.59.35.png>)
 
 - Use el instrumento para generar un sonido tipo clarinete y otro tipo campana. Tome los parámetros del
   sonido (N1, N2 e I) y de la envolvente ADSR del citado artículo. Con estos sonidos, genere sendas escalas
